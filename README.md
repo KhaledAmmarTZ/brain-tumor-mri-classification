@@ -3,10 +3,27 @@
 
 This project implements **binary classification (Tumor vs. No Tumor)** using four deep-learning models:
 
-- **Custom CNN (Baseline Model)**
-- **VGG16 – Fine-Tuned**
-- **ResNet50 – Fine-Tuned**
-- **DenseNet121 – Fine-Tuned (Best Performing Model)**
+🔹 Models Used
+
+Custom CNN (Baseline Model)
+
+A simple convolutional neural network with three Conv-Pool blocks and fully connected layers.
+
+Provides a baseline for comparison.
+
+VGG16 – Fine-Tuned
+
+Pre-trained on ImageNet, with last layers fine-tuned for brain MRI classification.
+
+MobileNetV2 – Fine-Tuned
+
+Lightweight transfer learning model for faster training with good accuracy.
+
+DenseNet121 – Fine-Tuned (Best Performing Model)
+
+Pre-trained DenseNet121, fine-tuned on the dataset.
+
+Achieves the highest accuracy and best generalization.
 
 The models are trained and evaluated on a curated brain MRI dataset containing **8,277 training images** and **1,816 testing images**, organized into *Tumor* and *No Tumor* classes.
 
@@ -116,10 +133,14 @@ for layer in base.layers[-5:]:
     layer.trainable = True
     
 model.compile(optimizer=Adam(1e-5), loss="binary_crossentropy", metrics=["accuracy"])
-3️⃣ ResNet50 (Fine-Tuned)
-python
-Copy code
-base = ResNet50(weights="imagenet", include_top=False, input_shape=(224,224,3))
+
+3️⃣ MobileNetV2 (Fine-Tuned)
+from tensorflow.keras.applications import MobileNetV2
+from tensorflow.keras.models import Model
+from tensorflow.keras.layers import GlobalAveragePooling2D, Dense, Dropout
+from tensorflow.keras.optimizers import Adam
+
+base = MobileNetV2(weights="imagenet", include_top=False, input_shape=(224,224,3))
 base.trainable = False
 
 x = GlobalAveragePooling2D()(base.output)
@@ -135,6 +156,7 @@ for layer in base.layers[-30:]:
     layer.trainable = True
 
 model.compile(optimizer=Adam(1e-5), loss='binary_crossentropy', metrics=['accuracy'])
+
 4️⃣ DenseNet121 (Fine-Tuned) — ⭐ Best Model
 python
 Copy code
