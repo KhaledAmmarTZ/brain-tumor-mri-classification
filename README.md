@@ -15,12 +15,9 @@ This repository includes complete training notebooks, evaluation scripts, confus
 ---
 
 # 📘 Google Colab Training Notebook  
-Paste your notebook link here:
 
 🔗 **Colab Notebook:**  
-https://colab.research.google.com/YOUR_LINK_HERE
-
-(Required by instructor)
+ https://colab.research.google.com/drive/1T_7naloU-uTCWEOOtiS73PEbntXpSG0j?usp=sharing
 
 ---
 
@@ -36,10 +33,9 @@ Testing/
 Tumor/
 No_Tumor/
 
-yaml
-Copy code
 
 Dataset Source (Mendeley DOI): **10.17632/c9rt8d6zrf.1**
+link: https://data.mendeley.com/datasets/c9rt8d6zrf/1
 
 ---
 
@@ -76,8 +72,6 @@ BrainTumor-MRI-Classification/
 ├── loss_curve.png
 └── confusion_matrix.png
 
-yaml
-Copy code
 
 ---
 
@@ -192,7 +186,7 @@ Custom CNN	Lower	Good baseline benchmark
 DenseNet121 performed the best across all metrics.
 
 🎥 Presentation Demo (Required)
-Add your project presentation video link here:
+
 
 🔗 https://your-video-link-here
 
