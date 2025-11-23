@@ -87,11 +87,12 @@ BrainTumor-MRI-Classification/
 
 ---
 
-# 🧪 Models Used
+🧪 Models Used
+1️⃣ Custom CNN (Baseline)
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
+from tensorflow.keras.optimizers import Adam
 
-## 1️⃣ Custom CNN (Baseline)
-
-```python
 model = Sequential([
     Conv2D(32, (3,3), activation='relu', input_shape=(224,224,3)),
     MaxPooling2D(2,2),
@@ -110,10 +111,12 @@ model = Sequential([
 
 model.compile(optimizer=Adam(1e-4), loss='binary_crossentropy', metrics=['accuracy'])
 
-```python
 2️⃣ VGG16 (Fine-Tuned)
-```python
-Copy code
+from tensorflow.keras.applications import VGG16
+from tensorflow.keras.models import Model
+from tensorflow.keras.layers import Flatten, Dense, Dropout
+from tensorflow.keras.optimizers import Adam
+
 base = VGG16(weights="imagenet", include_top=False, input_shape=(224,224,3))
 base.trainable = False
 
@@ -155,8 +158,11 @@ for layer in base.layers[-30:]:
 model.compile(optimizer=Adam(1e-5), loss='binary_crossentropy', metrics=['accuracy'])
 
 4️⃣ DenseNet121 (Fine-Tuned) — ⭐ Best Model
-python
-Copy code
+from tensorflow.keras.applications import DenseNet121
+from tensorflow.keras.models import Model
+from tensorflow.keras.layers import GlobalAveragePooling2D, Dense, Dropout
+from tensorflow.keras.optimizers import Adam
+
 base = DenseNet121(weights="imagenet", include_top=False, input_shape=(224,224,3))
 base.trainable = False
 
