@@ -1,5 +1,5 @@
 # 🧠 Brain Tumor MRI Classification  
-### *Custom CNN, VGG16, ResNet50 & DenseNet121 (Fine-Tuned)*
+### *Custom CNN, VGG16, MobileNetV2 & DenseNet121 (Fine-Tuned)*
 
 This project implements **binary classification (Tumor vs. No Tumor)** using four deep-learning models:
 
@@ -62,32 +62,27 @@ BrainTumor-MRI-Classification/
 │
 ├── README.md
 ├── requirements.txt
-│
 ├── notebooks/
-│ ├── Custom_CNN.ipynb
-│ ├── VGG16_FineTuned.ipynb
-│ ├── ResNet50_FineTuned.ipynb
-│ ├── DenseNet121_FineTuned.ipynb
-│
+│   ├── Custom_CNN.ipynb
+│   ├── VGG16_FineTuned.ipynb
+│   ├── MobileNetV2_FineTuned.ipynb
+│   └── DenseNet121_FineTuned.ipynb
 ├── models/
-│ ├── custom_cnn.h5
-│ ├── vgg16_finetuned.h5
-│ ├── resnet50_finetuned.h5
-│ └── densenet121_finetuned.h5
-│
+│   ├── custom_cnn.h5
+│   ├── vgg16_finetuned.h5
+│   ├── mobilenetv2_finetuned.h5
+│   └── densenet121_finetuned.h5
 ├── utils/
-│ ├── dataset_inspector.py
-│ ├── inference_single_image.py
-│ ├── preprocess.py
-│ └── plot_training.py
-│
+│   ├── dataset_inspector.py
+│   ├── inference_single_image.py
+│   ├── preprocess.py
+│   └── plot_training.py
 ├── sample_input/
-│ └── brain_mri_sample.jpg
-│
+│   └── brain_mri_sample.jpg
 └── sample_output/
-├── accuracy_curve.png
-├── loss_curve.png
-└── confusion_matrix.png
+    ├── accuracy_curve.png
+    ├── loss_curve.png
+    └── confusion_matrix.png
 
 
 ---
@@ -176,6 +171,7 @@ for layer in base.layers[-40:]:
     layer.trainable = True
 
 model.compile(optimizer=Adam(1e-5), loss="binary_crossentropy", metrics=["accuracy"])
+
 📊 Evaluation Code (Accuracy, Loss & Confusion Matrix)
 python
 Copy code
@@ -199,11 +195,13 @@ img = np.expand_dims(img, axis=0)
 pred = model.predict(img)[0][0]
 print("Tumor" if pred > 0.5 else "No Tumor")
 📝 Results Summary
-Model	Accuracy	Comment
-DenseNet121	⭐ Highest	Best overall performance
-ResNet50	High	Strong generalization
-VGG16	Medium	Useful baseline TL model
-Custom CNN	Lower	Good baseline benchmark
+| Model       | Accuracy  | Comment                         |
+| ----------- | --------- | ------------------------------- |
+| DenseNet121 | ⭐ Highest | Best overall performance        |
+| MobileNetV2 | High      | Fast and accurate               |
+| VGG16       | Medium    | Good baseline transfer learning |
+| Custom CNN  | Lower     | Benchmark model                 |
+
 
 DenseNet121 performed the best across all metrics.
 
