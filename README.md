@@ -109,8 +109,10 @@ model = Sequential([
 ])
 
 model.compile(optimizer=Adam(1e-4), loss='binary_crossentropy', metrics=['accuracy'])
+
+```python
 2️⃣ VGG16 (Fine-Tuned)
-python
+```python
 Copy code
 base = VGG16(weights="imagenet", include_top=False, input_shape=(224,224,3))
 base.trainable = False
